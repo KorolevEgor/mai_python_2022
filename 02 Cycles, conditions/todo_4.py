@@ -6,14 +6,13 @@ from data import drone_list, drone_weight_list
 # помните, что для дронов тяжелее 150 г согласовывать полет над населенным пунктом - обязательно!
 
 
-height = 110
-above = True
-outside_of_closed_areas = False
-direct_see = True
+height = 200
+directly = True
+is_city = True
+is_closed = False
 
-for drone, weight in zip(drone_list,  drone_weight_list):
-    if (weight > 150 and above) or (height <= 100 and above and not outside_of_closed_areas and not direct_see):
-        print('Нужно согласовывать')
-    else:
+for drone, weight in zip(drone_list,  drone_weight_list): 
+    if directly and (height <= 100) and (not is_closed) and ((is_city and weight < 150) or (not is_city)):
         print('Можно не согласовывать')
-
+    else:
+        print('Нужно согласовывать')
